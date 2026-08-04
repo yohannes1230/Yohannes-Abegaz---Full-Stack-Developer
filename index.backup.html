@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Yohannes Abegaz - Software Developer Portfolio. Experienced in full-stack web development, system design, and database-driven applications.">
+    <title>Yohannes Abegaz | Software Developer</title>
+
+    <!-- FIX: SEO — robots directive and canonical URL for search engines -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yohannesabegaz.dev">
+
+    <!-- FIX: Open Graph meta tags for LinkedIn / WhatsApp / Facebook link previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Yohannes Abegaz | Full-Stack Developer Portfolio">
+    <meta property="og:description" content="Full-stack developer specializing in React, Node.js, and MongoDB. 3rd-year Information Systems student at Addis Ababa University building production-quality web applications.">
+    <meta property="og:image" content="images/og-preview.jpg">
+    <meta property="og:url" content="https://yohannesabegaz.dev">
+    <meta property="og:site_name" content="Yohannes Abegaz Portfolio">
+
+    <!-- FIX: Twitter Card meta tags for Twitter/X link previews -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yohannes Abegaz | Full-Stack Developer Portfolio">
+    <meta name="twitter:description" content="Full-stack developer specializing in React, Node.js, and MongoDB. Building production-quality web applications.">
+    <meta name="twitter:image" content="images/og-preview.jpg">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Boxicons for beautiful lightweight icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Background Animated Blobs -->
+    <div class="blob-bg bg-primary"></div>
+    <div class="blob-bg bg-secondary"></div>
+
+    <!-- Navigation Menu -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">Y</span>A.
+            </a>
+
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="menu-toggle" id="mobile-menu" role="button" tabindex="0" aria-label="Open menu">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-overlay" id="mobile-overlay">
+        <div class="close-menu" id="close-menu" role="button" tabindex="0" aria-label="Close menu">
+            <i class='bx bx-x'></i>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#education" class="mobile-link">Education</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero section">
+            <div class="container hero-container">
+                <div class="hero-content reveal fade-up">
+                    <span class="greeting">Hello, world! I am</span>
+                    <h1 class="hero-title">Yohannes <span class="text-gradient">Abegaz</span></h1>
+                    <h2 class="hero-subtitle">Full-Stack Developer</h2>
+                    <p class="hero-description">
+                        I build full-stack products that turn messy workflows into clear, dependable software. My
+                        focus is shipping practical web applications with thoughtful backend design and clean user
+                        experiences.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Get In Touch <i
+                                class='bx bx-right-arrow-alt'></i></a>
+                        <a href="#projects" class="btn btn-secondary">View My Work</a>
+                        <a href="Yohannes_Abegaz_Resume.pdf" class="btn btn-secondary"
+                            download="Yohannes_Abegaz_Resume.pdf">Download Resume <i class='bx bx-download'></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <div class="container">
+                <h2 class="section-title reveal fade-up">About <span class="text-gradient">Me</span></h2>
+                <div class="about-grid reveal slide-in-left">
+                    <div class="about-text glass-card">
+                        <p>
+                            I am an Information Systems student at Addis Ababa University and a hands-on full-stack
+                            developer. I enjoy building software that helps people manage real operational work, from
+                            internal dashboards to transaction-heavy web platforms.
+                        </p>
+                        <p>
+                            My strongest work sits at the intersection of backend logic, database design, and usable
+                            interfaces. I like taking a vague process, understanding the bottlenecks, and turning it
+                            into something teams can actually rely on day to day.
+                        </p>
+                        <p>
+                            Right now I am looking for internships, junior developer roles, and collaborative projects
+                            where I can contribute quickly while continuing to grow as an engineer.
+                        </p>
+                    </div>
+                    <div class="about-stats reveal slide-in-right">
+                        <div class="stat-card glass-card">
+                            <i class='bx bx-folder-open stat-icon'></i>
+                            <h3 class="stat-value">4</h3>
+                            <p class="stat-label">Portfolio Case Studies</p>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <i class='bx bx-code-alt stat-icon'></i>
+                            <h3 class="stat-value">3rd</h3>
+                            <p class="stat-label">Year Information Systems Student</p>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <i class='bx bx-layer stat-icon'></i>
+                            <h3 class="stat-value">10+</h3>
+                            <p class="stat-label">Tools Used Across Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section">
+            <div class="container">
+                <h2 class="section-title reveal fade-up">Technical <span class="text-gradient">Arsenal</span></h2>
+
+                <div class="skills-grid">
+                    <!-- Languages -->
+                    <div class="skill-category glass-card reveal fade-up" style="transition-delay: 100ms;">
+                        <h3 class="category-title"><i class='bx bx-terminal'></i> Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="skill-category glass-card reveal fade-up" style="transition-delay: 200ms;">
+                        <h3 class="category-title"><i class='bx bx-layer'></i> Frameworks</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Tailwind</span>
+                        </div>
+                    </div>
+
+                    <!-- Databases -->
+                    <div class="skill-category glass-card reveal fade-up" style="transition-delay: 300ms;">
+                        <h3 class="category-title"><i class='bx bx-data'></i> Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">MySQL</span>
+                        </div>
+                    </div>
+
+                    <!-- DevOps -->
+                    <div class="skill-category glass-card reveal fade-up" style="transition-delay: 400ms;">
+                        <h3 class="category-title"><i class='bx bx-cloud'></i> Tools & Cloud</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git & GitHub</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Nginx</span>
+                            <span class="skill-tag">Agile/Scrum</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="container">
+                <h2 class="section-title reveal fade-up">Featured <span class="text-gradient">Projects</span></h2>
+
+                <div class="projects-grid">
+
+                    <div class="project-card glass-card reveal fade-up">
+                        <div class="project-image">
+                            <img src="images/car photo.jpg" alt="Dashboard for a vehicle brokerage platform"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Vehicle Brokerage Platform</h3>
+                            <p class="project-desc">
+                                Built for brokers who need one place to track vehicle listings, buyer interest, and
+                                deal progress. I worked on the full-stack flow for listing management, transaction
+                                updates, and a cleaner handoff between sellers and brokers.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Designed RESTful API endpoints for vehicle CRUD and transaction state management
+                                </li>
+                                <li>Built role-based access for brokers, sellers, and admins with JWT auth</li>
+                                <li>Implemented real-time listing status updates via WebSocket integration</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="mailto:yohannesabegaz63@gmail.com?subject=Vehicle%20Brokerage%20Platform%20Walkthrough"
+                                    class="project-link"><i class='bx bx-envelope'></i> Request Walkthrough</a>
+                                <a href="https://github.com/yohannes1230" class="project-link" target="_blank"
+                                    rel="noopener noreferrer"><i class='bx bxl-github'></i> GitHub Profile</a>
+                                <a href="#" class="project-link project-link-demo"><i class='bx bx-link-external'></i>
+                                    Live Demo</a>
+                                <a href="https://github.com/yohannes1230" class="project-link project-link-code"
+                                    target="_blank" rel="noopener noreferrer"><i class='bx bx-code-alt'></i> View
+                                    Code</a>
+                                <a href="#" class="project-link project-link-ai"
+                                    data-project="Vehicle Brokerage Platform"><i class='bx bx-bot'></i> Explain with
+                                    AI</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional placeholder to show layout -->
+                    <div class="project-card glass-card reveal fade-up" style="transition-delay: 200ms;">
+                        <div class="project-image">
+                            <img src="images/photo_2026-03-10_06-13-38.jpg"
+                                alt="Interface preview of an enterprise operations platform"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Enterprise Web Platform</h3>
+                            <p class="project-desc">
+                                Designed for organizations that need approval-heavy internal workflows and dependable
+                                reporting. I focused on structuring backend business rules, secure data handling, and
+                                an interface that made multi-step tasks easier to complete.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Architected multi-tier approval workflow engine with configurable rule chains</li>
+                                <li>Implemented row-level security policies in PostgreSQL for data isolation</li>
+                                <li>Built audit trail system logging every state change for compliance reporting</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="mailto:yohannesabegaz63@gmail.com?subject=Enterprise%20Web%20Platform%20Walkthrough"
+                                    class="project-link"><i class='bx bx-envelope'></i>
+                                    Request Walkthrough</a>
+                                <a href="https://github.com/yohannes1230" class="project-link" target="_blank"
+                                    rel="noopener noreferrer"><i class='bx bxl-github'></i>
+                                    GitHub Profile</a>
+                                <a href="#" class="project-link project-link-demo"><i class='bx bx-link-external'></i>
+                                    Live Demo</a>
+                                <a href="https://github.com/yohannes1230" class="project-link project-link-code"
+                                    target="_blank" rel="noopener noreferrer"><i class='bx bx-code-alt'></i> View
+                                    Code</a>
+                                <a href="#" class="project-link project-link-ai"
+                                    data-project="Enterprise Web Platform"><i class='bx bx-bot'></i> Explain with AI</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Website -->
+                    <div class="project-card glass-card reveal fade-up" style="transition-delay: 300ms;">
+                        <div class="project-image">
+                            <img src="images/image123.png" alt="Responsive homepage for a content publishing platform"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Blog Website</h3>
+                            <p class="project-desc">
+                                Created for writers who need a simple publishing workflow without sacrificing design.
+                                I built the responsive frontend and content management structure to make publishing,
+                                editing, and browsing posts feel straightforward on mobile and desktop.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Implemented server-side rendering with Next.js for SEO-optimized blog pages</li>
+                                <li>Built dynamic routing and markdown parsing for flexible content creation</li>
+                                <li>Designed responsive layouts with TailwindCSS achieving 95+ Lighthouse scores</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">TailwindCSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="mailto:yohannesabegaz63@gmail.com?subject=Blog%20Website%20Walkthrough"
+                                    class="project-link"><i class='bx bx-envelope'></i> Request Walkthrough</a>
+                                <a href="https://github.com/yohannes1230" class="project-link" target="_blank"
+                                    rel="noopener noreferrer"><i class='bx bxl-github'></i> GitHub Profile</a>
+                                <a href="#" class="project-link project-link-demo"><i class='bx bx-link-external'></i>
+                                    Live Demo</a>
+                                <a href="https://github.com/yohannes1230" class="project-link project-link-code"
+                                    target="_blank" rel="noopener noreferrer"><i class='bx bx-code-alt'></i> View
+                                    Code</a>
+                                <a href="#" class="project-link project-link-ai" data-project="Blog Website"><i
+                                        class='bx bx-bot'></i> Explain with AI</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Tracker -->
+                    <div class="project-card glass-card reveal fade-up" style="transition-delay: 400ms;">
+                        <div class="project-image">
+                            <img src="images/inventory1.jpg" alt="Inventory dashboard with stock tracking and alerts"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Inventory Tracker</h3>
+                            <p class="project-desc">
+                                Built to help small teams monitor stock levels, restocking needs, and inventory
+                                movement without relying on spreadsheets. I implemented reporting views, low-stock
+                                alerts, and CRUD flows for day-to-day inventory operations.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Designed MongoDB aggregation pipelines for real-time inventory analytics</li>
+                                <li>Implemented threshold-based alert system for automatic low-stock notifications</li>
+                                <li>Built export functionality generating CSV/PDF reports for stakeholders</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Express</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="mailto:yohannesabegaz63@gmail.com?subject=Inventory%20Tracker%20Walkthrough"
+                                    class="project-link"><i class='bx bx-envelope'></i> Request Walkthrough</a>
+                                <a href="https://github.com/yohannes1230" class="project-link" target="_blank"
+                                    rel="noopener noreferrer"><i class='bx bxl-github'></i> GitHub Profile</a>
+                                <a href="#" class="project-link project-link-demo"><i class='bx bx-link-external'></i>
+                                    Live Demo</a>
+                                <a href="https://github.com/yohannes1230" class="project-link project-link-code"
+                                    target="_blank" rel="noopener noreferrer"><i class='bx bx-code-alt'></i> View
+                                    Code</a>
+                                <a href="#" class="project-link project-link-ai" data-project="Inventory Tracker"><i
+                                        class='bx bx-bot'></i> Explain with AI</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telegram Mini Apps -->
+                    <div class="project-card glass-card reveal fade-up" style="transition-delay: 500ms;">
+                        <div class="project-image">
+                            <img src="images/telegram mini.jpg"
+                                alt="Collection of Telegram mini apps for in-chat workflows"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Telegram Mini Apps</h3>
+                            <p class="project-desc">
+                                A set of lightweight in-chat tools built for users who prefer staying inside Telegram.
+                                The work focused on fast interactions, bot-connected workflows, and compact interfaces
+                                that still felt clear inside the Telegram environment.
+                            </p>
+                            <ul class="project-highlights">
+                                <li>Integrated Telegram Bot API with webhook-based event handling for real-time
+                                    responses</li>
+                                <li>Built inline keyboard navigation for complex multi-step user flows</li>
+                                <li>Optimized payload sizes for sub-200ms response times within chat interface</li>
+                            </ul>
+                            <div class="project-tech">
+                                <span class="tech-tag">Telegram Bot API</span>
+                                <span class="tech-tag">Node.js</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/yohannes1230" class="project-link" target="_blank"
+                                    rel="noopener noreferrer"><i class='bx bxl-github'></i> GitHub Profile</a>
+                                <a href="#" class="project-link project-link-demo"><i class='bx bx-link-external'></i>
+                                    Live Demo</a>
+                                <a href="https://github.com/yohannes1230" class="project-link project-link-code"
+                                    target="_blank" rel="noopener noreferrer"><i class='bx bx-code-alt'></i> View
+                                    Code</a>
+                                <a href="#" class="project-link project-link-ai" data-project="Telegram Mini Apps"><i
+                                        class='bx bx-bot'></i> Explain with AI</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon Projects Section -->
+        <section id="coming-soon" class="coming-soon section">
+            <div class="container">
+                <h2 class="section-title reveal fade-up">Coming <span class="text-gradient">Soon</span></h2>
+                <p class="coming-soon-subtitle reveal fade-up">Exciting projects currently in the pipeline. Stay tuned
+                    for launches.</p>
+
+                <div class="coming-soon-grid">
+
+                    <!-- Card 1 -->
+                    <div class="cs-card glass-card reveal fade-up" style="transition-delay: 100ms;">
+                        <div class="cs-card-glow"></div>
+                        <div class="cs-badge"><i class='bx bx-time-five'></i> Coming Soon</div>
+                        <div class="cs-icon-wrap">
+                            <i class='bx bx-bot'></i>
+                        </div>
+                        <h3 class="cs-card-title">AI Study Companion</h3>
+                        <p class="cs-problem"><i class='bx bx-target-lock'></i> Problem: Students waste hours on passive
+                            review instead of targeted practice on weak areas.</p>
+                        <p class="cs-card-desc">
+                            A microservice-driven learning platform with a FastAPI backend orchestrating OpenAI
+                            embeddings for semantic content matching, a spaced-repetition scheduler, and a React
+                            dashboard that surfaces personalized study plans and auto-generated quizzes.
+                        </p>
+                        <div class="cs-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <div class="cs-progress">
+                            <div class="cs-progress-bar" style="--progress: 35%;"></div>
+                            <span class="cs-progress-label">35% Complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="cs-card glass-card reveal fade-up" style="transition-delay: 250ms;">
+                        <div class="cs-card-glow"></div>
+                        <div class="cs-badge"><i class='bx bx-time-five'></i> Coming Soon</div>
+                        <div class="cs-icon-wrap">
+                            <i class='bx bx-bar-chart-alt-2'></i>
+                        </div>
+                        <h3 class="cs-card-title">Real-Time Analytics Hub</h3>
+                        <p class="cs-problem"><i class='bx bx-target-lock'></i> Problem: Teams rely on stale,
+                            batch-processed reports instead of live operational data.</p>
+                        <p class="cs-card-desc">
+                            An event-driven analytics platform using Socket.io for bidirectional streaming, Redis
+                            pub/sub for message brokering, D3.js for GPU-accelerated interactive visualizations, and a
+                            Next.js SSR shell for SEO-friendly dashboard pages with server-side data hydration.
+                        </p>
+                        <div class="cs-tech-tags">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="cs-progress">
+                            <div class="cs-progress-bar" style="--progress: 20%;"></div>
+                            <span class="cs-progress-label">20% Complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="cs-card glass-card reveal fade-up" style="transition-delay: 400ms;">
+                        <div class="cs-card-glow"></div>
+                        <div class="cs-badge"><i class='bx bx-time-five'></i> Coming Soon</div>
+                        <div class="cs-icon-wrap">
+                            <i class='bx bx-devices'></i>
+                        </div>
+                        <h3 class="cs-card-title">Cross-Platform Expense Tracker</h3>
+                        <p class="cs-problem"><i class='bx bx-target-lock'></i> Problem: Families and roommates lack a
+                            shared, real-time view of household spending.</p>
+                        <p class="cs-card-desc">
+                            A cross-platform app built with React Native + Expo for iOS/Android and a Node.js REST API
+                            with MongoDB change streams for real-time wallet sync. Features OCR receipt scanning,
+                            ML-based category prediction, and WebSocket-powered shared budget dashboards.
+                        </p>
+                        <div class="cs-tech-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Expo</span>
+                            <span class="tech-tag">Tesseract.js</span>
+                        </div>
+                        <div class="cs-progress">
+                            <div class="cs-progress-bar" style="--progress: 10%;"></div>
+                            <span class="cs-progress-label">10% Complete</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Coursework Section -->
+        <section class="dual-section section">
+            <div class="container dual-grid">
+                <!-- Education -->
+                <div id="education" class="education reveal slide-in-left">
+                    <h2 class="section-title">Education <span class="text-gradient">& Growth</span></h2>
+
+                    <div class="timeline">
+                        <div class="timeline-item glass-card">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">Expected Graduation: 2027</div>
+                            <h3 class="timeline-title">Information Systems</h3>
+                            <h4 class="timeline-org">Addis Ababa University</h4>
+                            <p class="timeline-text">
+                                Third-year student building a strong base in systems analysis, databases, networking,
+                                and software engineering while applying those ideas to practical web projects.
+                            </p>
+                        </div>
+                        <!-- Space for future evolution -->
+                        <div class="timeline-item shadow-card">
+                            <div class="timeline-dot alt"></div>
+                            <div class="timeline-date">Continuous</div>
+                            <h3 class="timeline-title">Self-Learning & Certifications</h3>
+                            <p class="timeline-text">
+                                Dedicated to continuous learning in DevOps, secure coding, and emerging architecture
+                                principles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coursework -->
+                <div class="testimonials reveal slide-in-right">
+                    <h2 class="section-title">Coursework <span class="text-gradient">& Focus</span></h2>
+
+                    <div class="testimonial-card glass-card">
+                        <i class='bx bx-book-open quote-icon'></i>
+                        <p class="testimonial-text">
+                            Current academic focus includes systems analysis and design, database systems, software
+                            engineering, networking, and project implementation. Outside the classroom, I spend most of
+                            my time improving full-stack development, API design, and deployment workflows.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class='bx bx-code-alt'></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Expected Graduation: 2027</h4>
+                                <span>Addis Ababa University, 3rd Year Information Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <div class="contact-wrapper glass-card reveal fade-up">
+                    <div class="contact-info">
+                        <h2 class="contact-title">Let's <span class="text-gradient">Connect</span></h2>
+                        <p class="contact-desc">
+                            I'm currently open for new opportunities. Whether you have a question, want to collaborate,
+                            or just want to say hi, I'll try my best to get back to you!
+                        </p>
+
+                        <div class="contact-methods">
+                            <a href="mailto:yohannesabegaz63@gmail.com" class="contact-method glass-button">
+                                <i class='bx bx-envelope'></i>
+                                <span>yohannesabegaz63@gmail.com</span>
+                            </a>
+                            <!-- Phone with privacy toggle: masked by default, eye icon to reveal -->
+                            <div class="contact-method glass-button phone-privacy-wrap" id="phone-wrap-main">
+                                <i class='bx bx-phone'></i>
+                                <span class="phone-text" id="phone-text-main">097****985</span>
+                                <button type="button" class="phone-toggle" id="phone-toggle" title="Show / hide phone number" aria-label="Toggle phone number visibility">
+                                    <i class='bx bx-hide' id="phone-toggle-icon"></i>
+                                </button>
+                            </div>
+                            <div class="contact-method static-method glass-button">
+                                <i class='bx bx-map'></i>
+                                <span>Addis Ababa, Ethiopia</span>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/yohannes-abegaz-139325314" target="_blank"
+                                rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
+                            <a href="https://github.com/yohannes1230" target="_blank" rel="noopener noreferrer"
+                                class="social-link" title="GitHub">
+                                <i class='bx bxl-github'></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <p class="form-note">
+                            <i class='bx bx-info-circle'></i> Prefer email? I usually respond within 24 hours.
+                        </p>
+                        <form action="https://formspree.io/f/xanwpgvz" method="POST" class="contact-form" id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required
+                                    placeholder="John Doe">
+                                <span class="field-error" id="name-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-input" required
+                                    placeholder="john@example.com">
+                                <span class="field-error" id="email-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" name="message" class="form-textarea" required
+                                    placeholder="Your message here..." rows="4"></textarea>
+                                <span class="field-error" id="message-error"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary submit-btn">Send Message <i
+                                    class='bx bx-send'></i></button>
+                        </form>
+                        <div class="form-success" id="formSuccess" style="display: none;">
+                            <i class='bx bx-check-circle' style="font-size: 3rem; color: #10b981;"></i>
+                            <h3 style="color: var(--color-text-main); margin: 1rem 0 0.5rem;">Message Sent!</h3>
+                            <p style="color: var(--color-text-muted);">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+                            <button class="btn btn-secondary" id="formSuccessReset" style="margin-top: 1rem;">Send Another Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer-section">
+        <!-- Particle Network Canvas Background -->
+        <canvas id="footer-particles" class="footer-particles-canvas"></canvas>
+
+
+        <div class="container footer-main">
+            <div class="footer-grid">
+                <!-- Column 1: Brand & Terminal -->
+                <div class="footer-col footer-brand-col">
+                    <div class="footer-logo-large">
+                        <span class="logo-accent">Y</span>A<span class="terminal-cursor">_</span>
+                    </div>
+                    <p class="footer-tagline">Building the future, one commit at a time.</p>
+
+                    <!-- Terminal Widget -->
+                    <div class="terminal-widget">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot dot-red"></span>
+                                <span class="dot dot-yellow"></span>
+                                <span class="dot dot-green"></span>
+                            </div>
+                            <span class="terminal-title">status.sh</span>
+                        </div>
+                        <div class="terminal-body" id="terminal-body">
+                            <div class="terminal-line"><span class="term-prompt">$</span> <span
+                                    class="term-cmd">whoami</span></div>
+                            <div class="terminal-line term-output">yohannes.abegaz</div>
+                            <div class="terminal-line"><span class="term-prompt">$</span> <span class="term-cmd">cat
+                                    status.txt</span></div>
+                            <div class="terminal-line term-output term-success">Available for hire</div>
+                            <div class="terminal-line"><span class="term-prompt">$</span> <span class="term-cmd">echo
+                                    $STACK</span></div>
+                            <div class="terminal-line term-output">React | Node.js | Python | MongoDB</div>
+                            <div class="terminal-line"><span class="term-prompt">$</span> <span
+                                    class="term-blink">_</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><i class='bx bx-link'></i> Quick Links</h4>
+                    <nav class="footer-nav">
+                        <a href="#hero" class="footer-link"><i class='bx bx-chevron-right'></i> Home</a>
+                        <a href="#about" class="footer-link"><i class='bx bx-chevron-right'></i> About</a>
+                        <a href="#skills" class="footer-link"><i class='bx bx-chevron-right'></i> Skills</a>
+                        <a href="#projects" class="footer-link"><i class='bx bx-chevron-right'></i> Projects</a>
+                        <a href="#education" class="footer-link"><i class='bx bx-chevron-right'></i> Education</a>
+                        <a href="#contact" class="footer-link"><i class='bx bx-chevron-right'></i> Contact</a>
+                    </nav>
+                </div>
+
+                <!-- Column 3: Connect & Location -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><i class='bx bx-globe'></i> Connect</h4>
+                    <div class="footer-social-grid">
+                        <a href="https://github.com/yohannes1230" target="_blank" rel="noopener noreferrer"
+                            class="footer-social-card" title="GitHub">
+                            <i class='bx bxl-github'></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yohannes-abegaz-139325314" target="_blank"
+                            rel="noopener noreferrer" class="footer-social-card" title="LinkedIn">
+                            <i class='bx bxl-linkedin'></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="mailto:yohannesabegaz63@gmail.com" class="footer-social-card" title="Email">
+                            <i class='bx bx-envelope'></i>
+                            <span>Email</span>
+                        </a>
+                        <div class="footer-social-card" title="Phone" id="phone-link-footer">
+                            <i class='bx bx-phone'></i>
+                            <span id="phone-text-footer">097****985</span>
+                        </div>
+                    </div>
+
+                    <div class="footer-location">
+                        <i class='bx bx-map'></i>
+                        <span>Addis Ababa, Ethiopia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Marquee -->
+        <div class="tech-marquee-wrapper">
+            <div class="tech-marquee">
+                <div class="marquee-track">
+                    <span class="marquee-item"><i class='bx bxl-javascript'></i> JavaScript</span>
+                    <span class="marquee-item"><i class='bx bxl-python'></i> Python</span>
+                    <span class="marquee-item"><i class='bx bxl-react'></i> React</span>
+                    <span class="marquee-item"><i class='bx bxl-nodejs'></i> Node.js</span>
+                    <span class="marquee-item"><i class='bx bxl-mongodb'></i> MongoDB</span>
+                    <span class="marquee-item"><i class='bx bxl-docker'></i> Docker</span>
+                    <span class="marquee-item"><i class='bx bxl-github'></i> Git</span>
+                    <span class="marquee-item"><i class='bx bxl-html5'></i> HTML5</span>
+                    <span class="marquee-item"><i class='bx bxl-css3'></i> CSS3</span>
+                    <span class="marquee-item"><i class='bx bxl-django'></i> Django</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="marquee-item"><i class='bx bxl-javascript'></i> JavaScript</span>
+                    <span class="marquee-item"><i class='bx bxl-python'></i> Python</span>
+                    <span class="marquee-item"><i class='bx bxl-react'></i> React</span>
+                    <span class="marquee-item"><i class='bx bxl-nodejs'></i> Node.js</span>
+                    <span class="marquee-item"><i class='bx bxl-mongodb'></i> MongoDB</span>
+                    <span class="marquee-item"><i class='bx bxl-docker'></i> Docker</span>
+                    <span class="marquee-item"><i class='bx bxl-github'></i> Git</span>
+                    <span class="marquee-item"><i class='bx bxl-html5'></i> HTML5</span>
+                    <span class="marquee-item"><i class='bx bxl-css3'></i> CSS3</span>
+                    <span class="marquee-item"><i class='bx bxl-django'></i> Django</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="footer-text">&copy; 2026 Yohannes Abegaz. Built with <span
+                        class="code-heart">&lt;3/&gt;</span> and care.</p>
+                <div class="footer-bottom-right">
+                    <span class="footer-status-dot"></span>
+                    <span class="footer-status-text">All systems operational</span>
+                    <a href="#hero" class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+                        <i class='bx bx-up-arrow-alt'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot Widget -->
+    <div id="chatbot-toggle" class="chatbot-toggle" role="button" tabindex="0" aria-label="Open chatbot">
+        <i class='bx bx-message-dots'></i>
+        <span class="chatbot-pulse"></span>
+    </div>
+
+    <div id="chatbot-window" class="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-header-left">
+                <div class="chatbot-avatar">
+                    <i class='bx bx-bot'></i>
+                </div>
+                <div class="chatbot-header-info">
+                    <h4>Ask My Portfolio</h4>
+                    <span class="chatbot-status"><span class="chatbot-status-dot"></span> Online</span>
+                </div>
+            </div>
+            <button id="chatbot-close" class="chatbot-close" aria-label="Close chatbot">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+
+        <div id="chatbot-messages" class="chatbot-messages">
+            <div class="chat-msg bot-msg">
+                <div class="chat-bubble bot-bubble">
+                    Hey 👋 I know everything about Yohannes's projects and skills. Curious how any of them are built?
+                    Ask me anything.
+                </div>
+            </div>
+        </div>
+
+        <div id="chatbot-suggestions" class="chatbot-suggestions">
+            <button class="suggestion-chip" data-question="What skills does Yohannes have?">💡 Skills</button>
+            <button class="suggestion-chip" data-question="Tell me about Yohannes's projects">🚀 Projects</button>
+            <button class="suggestion-chip" data-question="Explain the Vehicle Brokerage Platform in detail">🔍 Explain
+                a Project</button>
+            <button class="suggestion-chip" data-question="What is Yohannes's education?">🎓 Education</button>
+            <button class="suggestion-chip" data-question="How can I contact Yohannes?">📬 Contact</button>
+        </div>
+
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Type a question..."
+                autocomplete="off" inputmode="text" enterkeyhint="send">
+            <button id="chatbot-send" class="chatbot-send" aria-label="Send message">
+                <i class='bx bx-send'></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
