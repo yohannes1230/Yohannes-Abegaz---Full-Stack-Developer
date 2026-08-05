@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.setAttribute('aria-label', `View details for ${skill.name}`);
                 card.innerHTML = `
                     <div class="skill-card-icon">
-                        <i class="devicon-${iconKey}-plain colored skill-icon-actual" aria-hidden="true" onerror="this.style.display='none'; this.parentElement.querySelector('.skill-icon-fallback').style.display='inline-flex';"></i>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${iconKey}/${iconKey}-original.svg" alt="${skill.name} logo" class="skill-icon-actual" onerror="this.style.display='none'; this.parentElement.querySelector('.skill-icon-fallback').style.display='inline-flex';">
                         <span class="skill-icon-fallback">${initials}</span>
                     </div>
                     <div class="skill-card-info">
