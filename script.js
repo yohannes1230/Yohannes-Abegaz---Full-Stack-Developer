@@ -379,6 +379,17 @@ document.addEventListener('DOMContentLoaded', () => {
             section.appendChild(grid);
             skillsGrid.appendChild(section);
         });
+
+        // Add explicit check for failed font icons (zero width/height) after a short delay
+        setTimeout(() => {
+            document.querySelectorAll('.skill-icon-actual').forEach(icon => {
+                if (icon.offsetWidth === 0 || icon.offsetHeight === 0) {
+                    icon.style.display = 'none';
+                    const fallback = icon.parentElement.querySelector('.skill-icon-fallback');
+                    if (fallback) fallback.style.display = 'inline-flex';
+                }
+            });
+        }, 500);
     }
 
     // ===================== RENDER PROJECTS =====================
