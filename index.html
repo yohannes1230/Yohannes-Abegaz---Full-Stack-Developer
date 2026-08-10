@@ -114,6 +114,23 @@
                 </a>
             </nav>
 
+            <!-- Sidebar Core Stack Widget -->
+            <div class="sidebar-stack">
+                <span class="sidebar-stack__label">CORE STACK</span>
+                <div class="sidebar-stack__grid">
+                    <a href="#/skills/javascript" class="sidebar-stack__icon" title="JavaScript"><i class="devicon-javascript-plain colored"></i></a>
+                    <a href="#/skills/typescript" class="sidebar-stack__icon" title="TypeScript"><i class="devicon-typescript-plain colored"></i></a>
+                    <a href="#/skills/react" class="sidebar-stack__icon" title="React"><i class="devicon-react-original colored"></i></a>
+                    <a href="#/skills/next-js" class="sidebar-stack__icon" title="Next.js"><i class="devicon-nextjs-plain colored"></i></a>
+                    <a href="#/skills/node-js" class="sidebar-stack__icon" title="Node.js"><i class="devicon-nodejs-plain colored"></i></a>
+                    <a href="#/skills/python" class="sidebar-stack__icon" title="Python"><i class="devicon-python-plain colored"></i></a>
+                    <a href="#/skills/mongodb" class="sidebar-stack__icon" title="MongoDB"><i class="devicon-mongodb-plain colored"></i></a>
+                    <a href="#/skills/postgresql" class="sidebar-stack__icon" title="PostgreSQL"><i class="devicon-postgresql-plain colored"></i></a>
+                    <a href="#/skills/docker" class="sidebar-stack__icon" title="Docker"><i class="devicon-docker-plain colored"></i></a>
+                    <a href="#/skills/git-github" class="sidebar-stack__icon" title="Git"><i class="devicon-git-plain colored"></i></a>
+                </div>
+            </div>
+
             <!-- Sidebar CTA Card -->
             <div class="sidebar-cta">
                 <div class="sidebar-cta-card">
@@ -563,8 +580,11 @@
                                             placeholder="Your message here..." rows="4"></textarea>
                                         <span class="field-error" id="message-error"></span>
                                     </div>
+                                    <!-- Honeypot — hidden from real users, catches bots -->
+                                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
                                     <button type="submit" class="btn btn-primary submit-btn">Send Message <i
                                             class='bx bx-send'></i></button>
+                                    <p id="form-status" class="form-status-msg" role="status" aria-live="polite"></p>
                                 </form>
                             </div>
                         </div>

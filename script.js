@@ -56,6 +56,30 @@ const skillsData = [
    ========================================================================= */
 const projectsData = [
     {
+        id: 'prime-invest-pro',
+        name: 'Prime Invest Pro',
+        // concept preview — replace with real screenshot when available
+        image: 'images/prime-invest-pro-preview.jpg',
+        tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Chart.js', 'OpenAI API'],
+        desc: 'Enterprise-grade digital investment banking platform simulating core operations of a professional investment bank — portfolio & client management, live market data, and an AI financial assistant.',
+        problem: 'Investment analysts lacked a unified platform for client portfolio tracking, live Ethiopian market data, and AI-assisted financial Q&A — forcing fragmented workflows across spreadsheets and external tools.',
+        approach: 'Built a full-stack React + Node.js/Express + MongoDB platform with role-based access (Admin, Analyst, Manager), live market data integration, Chart.js performance dashboards, and an OpenAI-powered assistant trained on portfolio context.',
+        highlights: [
+            'Role-based authentication (Admin, Analyst, Manager) with KYC-style identity verification',
+            'Live dashboard: total assets, portfolio performance, daily market summary, revenue & investment-growth charts',
+            'Client/portfolio management table with search, filter, and PDF/Excel export',
+            'Market watch panel — Ethiopian stock market, gold price, USD/ETB and EUR/ETB rates via live data integration',
+            'Built-in investment calculator: principal, rate, term → future value & projected profit',
+            'AI financial assistant powered by the OpenAI API for portfolio and market Q&A',
+            'Professional banking-grade design system (navy/white/gold) with full dark mode'
+        ],
+        links: {
+            github: 'https://github.com/yohannes1230/PrimeInvest-Pro',
+            demo: '#',
+            walkthrough: 'mailto:yohannesabegaz63@gmail.com?subject=Prime%20Invest%20Pro%20Walkthrough'
+        }
+    },
+    {
         id: 'vehicle-brokerage-platform',
         name: 'Vehicle Brokerage Platform',
         image: 'images/car photo.jpg',
@@ -488,12 +512,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function openMobileSidebar() {
         if (sidebar) sidebar.classList.add('open');
         if (mobileOverlay) mobileOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        // Lock the real scroll container (not body — body is overflow:hidden at the CSS level)
+        const ca = document.querySelector('.content-area');
+        if (ca) ca.style.overflow = 'hidden';
     }
     function closeMobileSidebar() {
         if (sidebar) sidebar.classList.remove('open');
         if (mobileOverlay) mobileOverlay.classList.remove('open');
-        document.body.style.overflow = '';
+        const ca = document.querySelector('.content-area');
+        if (ca) ca.style.overflow = '';
     }
 
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileSidebar);
@@ -563,7 +590,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (drawerBackdrop) drawerBackdrop.classList.add('open');
         if (drawerPanel) drawerPanel.setAttribute('aria-hidden', 'false');
         if (drawerBackdrop) drawerBackdrop.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        const ca = document.querySelector('.content-area');
+        if (ca) ca.style.overflowY = 'hidden';
 
         if (hash) history.pushState(null, '', hash);
 
@@ -576,7 +604,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (drawerBackdrop) drawerBackdrop.classList.remove('open');
         if (drawerPanel) drawerPanel.setAttribute('aria-hidden', 'true');
         if (drawerBackdrop) drawerBackdrop.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+        const ca = document.querySelector('.content-area');
+        if (ca) ca.style.overflowY = '';
 
         if (previousHash) {
             history.pushState(null, '', previousHash);
@@ -779,6 +808,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && cmdPalette && cmdPalette.classList.contains('open')) closeCmdPalette();
     });
 
+    // ===================== TYPEWRITER EFFECT =====================
+    const prefersReducedMotionTyped = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll(".typed-line").forEach((el) => {
+        const lines = JSON.parse(el.dataset.lines);
+        
+        if (prefersReducedMotionTyped) {
+            el.textContent = lines[0];
+            const cursor = el.nextElementSibling;
+            if (cursor && cursor.classList.contains('cursor')) {
+                cursor.style.display = 'none'; // hide cursor if static
+            }
+            return;
+        }
+
+        let lineIndex = 0, charIndex = 0, deleting = false;
+
+        function tick() {
+            const current = lines[lineIndex];
+            el.textContent = deleting
+                ? current.slice(0, charIndex--)
+                : current.slice(0, charIndex++);
+
+            let delay = deleting ? 25 : 45;
+            if (!deleting && charIndex === current.length + 1) { delay = 1400; deleting = true; }
+            if (deleting && charIndex === 0) { deleting = false; lineIndex = (lineIndex + 1) % lines.length; delay = 300; }
+            setTimeout(tick, delay);
+        }
+        tick();
+    });
+
     // ===================== COUNT-UP ANIMATION =====================
     const countEls = document.querySelectorAll('[data-count]');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -875,32 +934,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (contactForm) {
-        contactForm.addEventListener('submit', e => {
+        contactForm.addEventListener('submit', async e => {
             e.preventDefault();
             if (!validateContactForm()) return;
 
             const btn = contactForm.querySelector('.submit-btn');
-            const originalText = btn.innerHTML;
+            const formStatus = document.getElementById('form-status');
+            const originalHTML = btn.innerHTML;
+
             btn.innerHTML = 'Sending... <i class="bx bx-loader-alt bx-spin"></i>';
             btn.disabled = true;
+            if (formStatus) { formStatus.textContent = ''; formStatus.className = 'form-status-msg'; }
 
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: new FormData(contactForm),
-                headers: { Accept: 'application/json' }
-            }).then(response => {
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { Accept: 'application/json' }
+                });
+
                 if (response.ok) {
                     contactForm.reset();
+                    if (formStatus) {
+                        formStatus.textContent = "Message sent — I'll get back to you within 24 hours.";
+                        formStatus.className = 'form-status-msg form-status--success';
+                    }
                     showToast('success', 'Message Sent!', "Thanks for reaching out. I'll get back to you within 24 hours.");
                 } else {
+                    const data = await response.json().catch(() => null);
+                    const msg = data?.errors
+                        ? data.errors.map(err => err.message).join(', ')
+                        : 'Something went wrong — please email me directly at yohannesabegaz63@gmail.com.';
+                    if (formStatus) {
+                        formStatus.textContent = msg;
+                        formStatus.className = 'form-status-msg form-status--error';
+                    }
                     showToast('error', 'Send Failed', 'Please try again or email directly.');
                 }
-            }).catch(() => {
+            } catch (err) {
+                const msg = 'Network error — please email me directly at yohannesabegaz63@gmail.com.';
+                if (formStatus) {
+                    formStatus.textContent = msg;
+                    formStatus.className = 'form-status-msg form-status--error';
+                }
                 showToast('error', 'Network Error', 'Please check your connection and try again.');
-            }).finally(() => {
+            } finally {
                 btn.disabled = false;
-                btn.innerHTML = originalText;
-            });
+                btn.innerHTML = originalHTML;
+            }
         });
 
         contactForm.querySelectorAll('.form-input, .form-textarea').forEach(field => {

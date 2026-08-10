@@ -194,12 +194,10 @@
 html,
 body {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;          /* must NOT be overflow-x:hidden — that creates a scroll container and silently kills position:sticky on all children */
     scroll-behavior: smooth;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    height: 100%;
 }
 
 * {
@@ -310,7 +308,8 @@ h4,
 .app-shell {
     display: grid;
     grid-template-columns: 260px 1fr;
-    flex: 1 0 auto;
+    align-items: start;        /* REQUIRED: without this, grid stretches sidebar to row height and sticky has nothing to scroll against */
+    min-height: 100vh;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -320,7 +319,7 @@ h4,
 
 .main-content {
     min-width: 0;
-    overflow-y: auto;
+    /* overflow-y intentionally removed — only .content-area scrolls */
 }
 
 /* =========================================================================
@@ -328,7 +327,7 @@ h4,
    ========================================================================= */
 .sidebar {
     width: var(--sidebar-width);
-    min-height: 100vh;
+    height: 100vh;
     position: sticky;
     top: 0;
     left: 0;
@@ -432,6 +431,66 @@ h4,
 .sidebar-link.active .sidebar-icon-wrap {
     background: var(--accent-soft);
     color: var(--color-accent-primary);
+}
+
+/* Sidebar Terminal Widget */
+.sidebar-terminal {
+    margin: 1.5rem 1rem;
+    border-radius: 12px;
+    background: #14131F;
+    overflow: hidden;
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    box-shadow: var(--shadow-card);
+}
+.sidebar-terminal__bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 0.5rem 0.75rem; background: #1E1D2B;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; }
+.dot--red { background: #FF5F56; } .dot--yellow { background: #FFBD2E; } .dot--green { background: #27C93F; }
+.sidebar-terminal__title { margin-left: 0.5rem; color: #6B6B7B; font-size: 0.7rem; }
+.sidebar-terminal__body { padding: 1rem; color: #A5F3B0; min-height: 90px; }
+.prompt { color: #7C6FF0; }
+.cursor { animation: blink 1s step-start infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Sidebar Core Stack Widget */
+.sidebar-stack {
+    margin: 0.5rem 1rem 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+}
+.sidebar-stack__label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+.sidebar-stack__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+.sidebar-stack__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    font-size: 1.3rem;
+    transition: transform 0.15s ease, background 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+}
+.sidebar-stack__icon:hover {
+    transform: translateY(-2px) scale(1.1);
+    background: var(--color-bg-surface-hover);
 }
 
 /* Sidebar CTA Card */
@@ -551,8 +610,8 @@ h4,
     display: flex;
     flex-direction: column;
     min-width: 0;
-    overflow: hidden;
-    min-height: 100vh;
+    height: 100vh;             /* fill the viewport column — do NOT use min-height here or the panel won't clip */
+    overflow: hidden;          /* clip the topbar; scrolling is handled by .content-area below */
     transition: margin-left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -667,17 +726,18 @@ h4,
 /* =========================================================================
    CONTENT AREA & ROUTE PANELS
    ========================================================================= */
-.main-content,
-.content-area {
+.main-content {
     min-width: 0;
-    overflow-y: auto;
+    /* not a scroll container */
 }
 
 .content-area {
     flex: 1;
     min-width: 0;
+    overflow-y: auto;          /* THE sole scroll container — sidebar sticky tracks this */
     overflow-x: hidden;
     padding: 1.5rem 2rem 3rem;
+    height: 100%;              /* fill .main-panel so overflow-y:auto actually activates */
 }
 
 .route-panel {
@@ -2476,6 +2536,15 @@ h4,
     border-color: #ef4444 !important;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
 }
+
+.form-status-msg {
+    margin-top: 0.75rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    min-height: 1.2em;
+}
+.form-status--success { color: var(--chip-green); }
+.form-status--error   { color: var(--chip-rose); }
 
 /* Phone Toggle */
 .phone-privacy-wrap {
