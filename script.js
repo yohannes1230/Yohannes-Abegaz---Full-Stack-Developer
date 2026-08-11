@@ -278,11 +278,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===================== GREETING =====================
     const greetingEl = document.querySelector('#topbar-greeting h2');
+    const h = new Date().getHours();
+    const period = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
     if (greetingEl) {
-        const h = new Date().getHours();
-        const period = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
         greetingEl.textContent = `Good ${period}, visitor 👋`;
     }
+
+    // Update the hero eyebrow greeting to match time-of-day
+    const heroGreetingSpan = document.querySelector('.hero-eyebrow__greeting');
+    if (heroGreetingSpan) {
+        heroGreetingSpan.textContent = `GOOD ${period.toUpperCase()}`;
+    }
+
+    // ===================== HERO TAGLINE ROTATOR =====================
+    const rotator = document.querySelector('.hero-eyebrow__rotator');
+    if (rotator) {
+        let lines;
+        try { lines = JSON.parse(rotator.dataset.lines); } catch (e) { lines = null; }
+        if (lines && lines.length > 1) {
+            let i = 0;
+            rotator.textContent = lines[0];
+            setInterval(() => {
+                rotator.style.opacity = '0';
+                setTimeout(() => {
+                    i = (i + 1) % lines.length;
+                    rotator.textContent = lines[i];
+                    rotator.style.opacity = '1';
+                }, 300);
+            }, 3200);
+        }
+    }
+
+    // ===================== FOCUS CARD 3D TILT =====================
+    const focusCard = document.getElementById('hero-focus-card');
+    if (focusCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        focusCard.addEventListener('mousemove', (e) => {
+            const rect = focusCard.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            focusCard.style.transform =
+                `perspective(600px) rotateX(${(y * -6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg)`;
+        });
+        focusCard.addEventListener('mouseleave', () => {
+            focusCard.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
+        });
+    }
+
+    // ===================== AVATAR PULSE RING =====================
+    // Pulse ring only appears when "open to work" badge is present
+    const openToWorkBadge = document.getElementById('open-to-work-badge');
+    const heroAvatar = document.getElementById('hero-avatar-large');
+    if (heroAvatar && openToWorkBadge) {
+        heroAvatar.classList.add('is-available');
+    }
+
 
     // ===================== THEME TOGGLE =====================
     const themeToggle = document.getElementById('theme-toggle');
@@ -318,32 +367,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (skillsGrid) {
         const categories = [...new Set(skillsData.map(s => s.category))];
         const categoryIcons = { 'Languages': 'bx-terminal', 'Frameworks': 'bx-layer', 'Databases': 'bx-data', 'Tools & Cloud': 'bx-cloud' };
-        const iconAlias = {
-            javascript: 'javascript',
-            typescript: 'typescript',
-            python: 'python',
-            cplusplus: 'cplusplus',
-            csharp: 'csharp',
-            java: 'java',
-            php: 'php',
-            html5: 'html5',
-            css3: 'css3',
-            nodejs: 'nodejs',
-            express: 'express',
-            django: 'django',
-            react: 'react',
-            nextjs: 'nextjs',
-            bootstrap: 'bootstrap',
-            tailwindcss: 'tailwindcss',
-            mongodb: 'mongodb',
-            mysql: 'mysql',
-            postgresql: 'postgresql',
-            git: 'git',
-            docker: 'docker',
-            linux: 'linux',
-            nginx: 'nginx',
-            trello: 'trello',
-            figma: 'figma'
+        // Map each skill icon key → devicon CDN variant that actually exists
+        const iconVariantMap = {
+            javascript:   'javascript/javascript-original.svg',
+            typescript:   'typescript/typescript-original.svg',
+            python:       'python/python-original.svg',
+            cplusplus:    'cplusplus/cplusplus-original.svg',
+            csharp:       'csharp/csharp-original.svg',
+            java:         'java/java-original.svg',
+            php:          'php/php-original.svg',
+            html5:        'html5/html5-original.svg',
+            css3:         'css3/css3-original.svg',
+            nodejs:       'nodejs/nodejs-original.svg',
+            express:      'express/express-original.svg',
+            django:       'django/django-plain.svg',
+            react:        'react/react-original.svg',
+            nextjs:       'nextjs/nextjs-original.svg',
+            bootstrap:    'bootstrap/bootstrap-original.svg',
+            tailwindcss:  'tailwindcss/tailwindcss-original.svg',
+            mongodb:      'mongodb/mongodb-original.svg',
+            mysql:        'mysql/mysql-original.svg',
+            postgresql:   'postgresql/postgresql-original.svg',
+            git:          'git/git-original.svg',
+            docker:       'docker/docker-original.svg',
+            linux:        'linux/linux-original.svg',
+            nginx:        'nginx/nginx-original.svg',
+            trello:       'trello/trello-original.svg',
+            figma:        'figma/figma-original.svg'
         };
 
         categories.forEach(cat => {
@@ -356,43 +406,45 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.className = 'skill-cards-grid anim-stagger';
 
             skills.forEach((skill, idx) => {
-                const radius = 12;
-                const circumference = 2 * Math.PI * radius;
                 const level = Number(skill.level ?? 0);
-                const dashedOffset = circumference * (1 - level / 100);
+                // Map category name to data-category slug for CSS color coding
+                const catSlugMap = {
+                    'Languages':     'languages',
+                    'Frameworks':    'frameworks',
+                    'Databases':     'databases',
+                    'Tools & Cloud': 'tools-cloud'
+                };
+                const catSlug = catSlugMap[skill.category] || 'languages';
                 const initials = (skill.name || '').split(/\s+/).slice(0, 2).map(part => part[0]).join('').toUpperCase().slice(0, 2) || 'SK';
-                const iconKey = iconAlias[skill.icon] || 'code';
+                const iconPath = iconVariantMap[skill.icon] || null;
+                const iconSrc  = iconPath
+                    ? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${iconPath}`
+                    : '';
+
                 const card = document.createElement('div');
                 card.className = 'skill-card tilt-card';
                 card.setAttribute('data-skill-id', skill.id);
                 card.setAttribute('role', 'button');
                 card.setAttribute('tabindex', '0');
                 card.setAttribute('aria-label', `View details for ${skill.name}`);
+
                 card.innerHTML = `
                     <div class="skill-card-icon">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${iconKey}/${iconKey}-original.svg" alt="${skill.name} logo" class="skill-icon-actual" onerror="this.style.display='none'; this.parentElement.querySelector('.skill-icon-fallback').style.display='inline-flex';">
-                        <span class="skill-icon-fallback">${initials}</span>
+                        ${iconSrc ? `<img src="${iconSrc}" alt="${skill.name} logo" class="skill-icon-actual" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.skill-icon-fallback').style.display='inline-flex';">` : ''}
+                        <span class="skill-icon-fallback" style="${iconSrc ? '' : 'display:inline-flex;'}">${initials}</span>
                     </div>
                     <div class="skill-card-info">
                         <div class="skill-card-name">${skill.name}</div>
                         <div class="skill-card-teaser">${skill.teaser}</div>
                     </div>
-                    <div class="skill-proficiency-ring">
-                        <svg viewBox="0 0 32 32" aria-hidden="true">
-                            <circle class="proficiency-bg" cx="16" cy="16" r="12"></circle>
-                            <circle class="proficiency-fill" cx="16" cy="16" r="12" data-circumference="${circumference}" data-offset="${dashedOffset}"></circle>
+                    <div class="skill-gauge" data-level="${level}" data-category="${catSlug}" aria-label="${level}% proficiency">
+                        <svg viewBox="0 0 64 64" aria-hidden="true">
+                            <circle class="skill-gauge__track" cx="32" cy="32" r="27"></circle>
+                            <circle class="skill-gauge__fill"  cx="32" cy="32" r="27"></circle>
                         </svg>
+                        <span class="skill-gauge__value">0%</span>
                     </div>
                 `;
-
-                const ring = card.querySelector('.proficiency-fill');
-                if (ring) {
-                    ring.style.strokeDasharray = String(circumference);
-                    ring.style.strokeDashoffset = String(circumference);
-                    requestAnimationFrame(() => {
-                        ring.style.strokeDashoffset = String(dashedOffset);
-                    });
-                }
 
                 card.addEventListener('click', () => openSkillDrawer(skill.id));
                 card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSkillDrawer(skill.id); } });
@@ -404,16 +456,56 @@ document.addEventListener('DOMContentLoaded', () => {
             skillsGrid.appendChild(section);
         });
 
-        // Add explicit check for failed font icons (zero width/height) after a short delay
+        // ---- Gauge IntersectionObserver: fill once when card scrolls into view ----
+        const CIRCUMFERENCE = 169.6; // 2 * π * 27
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const gaugeObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const gauge = entry.target;
+                const level = Number(gauge.dataset.level) || 0;
+                const fillCircle = gauge.querySelector('.skill-gauge__fill');
+                const valueLabel = gauge.querySelector('.skill-gauge__value');
+                if (!fillCircle || !valueLabel) return;
+
+                if (prefersReducedMotion) {
+                    // Instant final state — no animation
+                    fillCircle.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - level / 100));
+                    valueLabel.textContent = `${level}%`;
+                } else {
+                    // Smooth fill
+                    fillCircle.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - level / 100));
+
+                    // Sync count-up label
+                    const duration = 1100;
+                    const start = performance.now();
+                    function tick(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        const current = Math.round(level * progress);
+                        valueLabel.textContent = `${current}%`;
+                        if (progress < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                }
+
+                gaugeObserver.unobserve(gauge); // one-time only
+            });
+        }, { threshold: 0.4 });
+
+        document.querySelectorAll('.skill-gauge').forEach(g => gaugeObserver.observe(g));
+
+
+        // Fallback check: after images load, hide any that rendered at 0×0
         setTimeout(() => {
             document.querySelectorAll('.skill-icon-actual').forEach(icon => {
-                if (icon.offsetWidth === 0 || icon.offsetHeight === 0) {
+                if (icon.naturalWidth === 0 || icon.offsetWidth === 0) {
                     icon.style.display = 'none';
                     const fallback = icon.parentElement.querySelector('.skill-icon-fallback');
                     if (fallback) fallback.style.display = 'inline-flex';
                 }
             });
-        }, 500);
+        }, 800);
     }
 
     // ===================== RENDER PROJECTS =====================

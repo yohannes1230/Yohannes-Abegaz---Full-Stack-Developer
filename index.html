@@ -189,7 +189,10 @@
                     <div class="panel-inner portfolio-shell">
                         <header class="hero-banner">
                             <div class="hero-copy">
-                                <p class="eyebrow" id="hero-greeting">Good evening — building software that matters.</p>
+                                <p class="eyebrow" id="hero-greeting">
+                                    <span class="hero-eyebrow__greeting">GOOD EVENING</span> &mdash;
+                                    <span class="hero-eyebrow__rotator" data-lines='["BUILDING SOFTWARE THAT MATTERS.","TURNING COMPLEX PROBLEMS INTO CLEAN CODE.","SHIPPING PRODUCTION-GRADE SYSTEMS.","DESIGNING WITH A PRODUCT MINDSET."]'>BUILDING SOFTWARE THAT MATTERS.</span>
+                                </p>
                                 <h1>Yohannes Abegaz</h1>
                                 <p class="hero-role">Information Systems Graduate • Full Stack Developer • AI Engineer
                                 </p>
@@ -204,19 +207,24 @@
                                 </div>
                             </div>
                             <div class="hero-visual" aria-hidden="true">
-                                <div class="profile-panel glass-card">
+                                <div class="profile-panel glass-card" id="hero-focus-card">
                                     <div class="profile-badge-row">
-                                        <span class="mini-pill success">Open to opportunities</span>
-                                        <span class="mini-pill">Based in Addis Ababa</span>
+                                        <span class="mini-pill success" id="open-to-work-badge">&#x2714; Open to opportunities</span>
+                                        <span class="mini-pill">&#x1F4CD; Addis Ababa</span>
                                     </div>
-                                    <div class="profile-avatar-large">YA</div>
+                                    <div class="profile-avatar-large" id="hero-avatar-large">YA</div>
                                     <div class="profile-line">
                                         <span class="label">Current focus</span>
                                         <strong>AI-powered learning systems</strong>
                                     </div>
                                     <div class="profile-line small">
                                         <span class="label">Stack</span>
-                                        <span>React • Node.js • Python • PostgreSQL</span>
+                                        <div class="hero-stack-chips" aria-label="Technology stack">
+                                            <i class="devicon-react-original colored" title="React"></i>
+                                            <i class="devicon-nodejs-plain colored" title="Node.js"></i>
+                                            <i class="devicon-python-plain colored" title="Python"></i>
+                                            <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -350,30 +358,30 @@
                         <div class="featured-section">
                             <div class="section-headline split-head">
                                 <div>
-                                    <span class="section-kicker">Selected Work</span>
-                                    <h2>Projects shaped for real users.</h2>
+                                    <span class="section-kicker">Shipped to Real Users</span>
+                                    <h2>Production systems built at FDRE Mesob.</h2>
                                 </div>
                                 <a href="#/projects" class="mini-link">Explore all projects</a>
                             </div>
 
                             <article class="spotlight-project">
                                 <div class="spotlight-media">
-                                    <img src="images/vehichle brokerage.jpg" alt="Vehicle Brokerage Platform">
+                                    <img src="images/mesob-cover.jpg" alt="FDRE Mesob Reporting System">
                                 </div>
                                 <div class="spotlight-copy">
-                                    <span class="project-type">Mobility / Operations</span>
-                                    <h3>Vehicle Brokerage Platform</h3>
-                                    <p>A broker-focused platform for managing listings, buyer interest, and deal
-                                        progression with live updates and role-based access.</p>
+                                    <span class="project-type">Government / Enterprise</span>
+                                    <h3>FDRE Mesob Reporting System</h3>
+                                    <p>A production reporting platform built for FDRE Mesob Services, enabling
+                                        real-time data collection, structured report generation, and multi-role
+                                        access control across operational departments.</p>
                                     <div class="project-badges">
                                         <span>React</span>
                                         <span>Node.js</span>
-                                        <span>MongoDB</span>
-                                        <span>Socket.io</span>
+                                        <span>PostgreSQL</span>
+                                        <span>Express</span>
                                     </div>
                                     <div class="project-actions">
-                                        <a href="#/projects/vehicle-brokerage-platform" class="inline-link">Case
-                                            Study</a>
+                                        <a href="#/projects/mesob-reporting-system" class="inline-link">Case Study</a>
                                         <a href="https://github.com/yohannes1230" target="_blank"
                                             rel="noopener noreferrer" class="inline-link muted">GitHub</a>
                                     </div>
@@ -382,22 +390,48 @@
 
                             <article class="spotlight-project reverse">
                                 <div class="spotlight-media">
-                                    <img src="images/image123.png" alt="AI Study Companion">
+                                    <img src="images/5.1.1.webp" alt="ERP System">
                                 </div>
                                 <div class="spotlight-copy">
-                                    <span class="project-type">AI / Learning</span>
-                                    <h3>AI Study Companion</h3>
-                                    <p>A personalized learning system built around spaced repetition, semantic search,
-                                        and adaptive study planning for better retention.</p>
+                                    <span class="project-type">Enterprise / Operations</span>
+                                    <h3>ERP System</h3>
+                                    <p>A comprehensive Enterprise Resource Planning platform covering HR, finance,
+                                        inventory, and procurement workflows — built to streamline internal
+                                        operations with audit logging and approval pipelines.</p>
                                     <div class="project-badges">
-                                        <span>Python</span>
-                                        <span>FastAPI</span>
-                                        <span>OpenAI</span>
+                                        <span>Express</span>
+                                        <span>PostgreSQL</span>
+                                        <span>Node.js</span>
                                         <span>React</span>
                                     </div>
                                     <div class="project-actions">
-                                        <a href="#/coming-soon" class="inline-link">Case Study</a>
-                                        <a href="#/contact" class="inline-link muted">Collaborate</a>
+                                        <a href="#/projects/enterprise-web-platform" class="inline-link">Case Study</a>
+                                        <a href="https://github.com/yohannes1230" target="_blank"
+                                            rel="noopener noreferrer" class="inline-link muted">GitHub</a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="spotlight-project">
+                                <div class="spotlight-media">
+                                    <img src="images/bms-preview.jpg" alt="Building Management System">
+                                </div>
+                                <div class="spotlight-copy">
+                                    <span class="project-type">Property / Facilities</span>
+                                    <h3>Building Management System</h3>
+                                    <p>A full-featured platform for managing tenants, lease contracts, maintenance
+                                        requests, and utility billing across multi-unit properties with a
+                                        real-time dashboard for property managers.</p>
+                                    <div class="project-badges">
+                                        <span>React</span>
+                                        <span>Node.js</span>
+                                        <span>MongoDB</span>
+                                        <span>Express</span>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="#/projects/building-management-system" class="inline-link">Case Study</a>
+                                        <a href="https://github.com/yohannes1230" target="_blank"
+                                            rel="noopener noreferrer" class="inline-link muted">GitHub</a>
                                     </div>
                                 </div>
                             </article>
@@ -410,7 +444,7 @@
                                 <p>Have a role, a project, or just want to talk shop? I usually reply within 24 hours.</p>
                                 <div class="closing-cta__actions">
                                     <a href="#/contact" class="btn btn--primary">Hire Me →</a>
-                                    <a href="/resume.pdf" class="btn btn--ghost" download>Download Resume</a>
+                                    <a href="Yohannes_Abegaz_Resume.pdf" class="btn btn--ghost" download="Yohannes_Abegaz_Resume.pdf">Download Resume</a>
                                 </div>
                             </div>
                         </section>
@@ -596,7 +630,7 @@
                                 <p>Have a role, a project, or just want to talk shop? I usually reply within 24 hours.</p>
                                 <div class="closing-cta__actions">
                                     <a href="#/contact" class="btn btn--primary">Hire Me →</a>
-                                    <a href="/resume.pdf" class="btn btn--ghost" download>Download Resume</a>
+                                    <a href="Yohannes_Abegaz_Resume.pdf" class="btn btn--ghost" download="Yohannes_Abegaz_Resume.pdf">Download Resume</a>
                                 </div>
                             </div>
                         </section>
