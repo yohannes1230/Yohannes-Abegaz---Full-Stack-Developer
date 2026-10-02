@@ -1265,3 +1265,68 @@ document.addEventListener('DOMContentLoaded', () => {
         chip.addEventListener('click', () => { chatInput.value = chip.dataset.question; handleSend(); });
     });
 })();
+
+/* =========================================================================
+   CERTIFICATE LIGHTBOX
+   ========================================================================= */
+(function initCertLightbox() {
+    const lightbox = document.getElementById('cert-lightbox');
+    if (!lightbox) return;
+
+    const backdrop   = document.getElementById('cert-lightbox-backdrop');
+    const closeBtn   = document.getElementById('cert-lightbox-close');
+    const img        = document.getElementById('cert-lightbox-img');
+    const caption    = document.getElementById('cert-lightbox-caption');
+
+    function openLightbox(src, alt, title) {
+        img.src = src;
+        img.alt = alt;
+        caption.textContent = title || alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        img.src = '';
+    }
+
+    // Attach click events to all cert cards
+    document.querySelectorAll('.cert-card').forEach(card => {
+        const certImg = card.querySelector('.cert-img');
+        const certTitle = card.querySelector('.cert-title');
+        if (!certImg) return;
+
+        card.addEventListener('click', () => {
+            openLightbox(
+                certImg.src,
+                certImg.alt,
+                certTitle ? certTitle.textContent : certImg.alt
+            );
+        });
+
+        // Keyboard accessibility
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    backdrop.addEventListener('click', closeLightbox);
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+            closeLightbox();
+        }
+    });
+})();

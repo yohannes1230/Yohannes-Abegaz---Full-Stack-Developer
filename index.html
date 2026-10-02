@@ -552,6 +552,75 @@
                                 </div>
                             </div>
                         </div>
+                    
+                        <!-- Certifications Section -->
+                        <div class="certifications-section">
+                            <div class="section-headline">
+                                <span class="section-kicker">Verified Credentials</span>
+                                <h2>Certifications <span class="text-gradient">&amp; Training</span></h2>
+                            </div>
+                            <div class="cert-grid">
+                                <article class="cert-card glass-card" id="cert-ethiocoders">
+                                    <div class="cert-badge">
+                                        <i class='bx bxs-badge-check'></i>
+                                    </div>
+                                    <div class="cert-image-wrap">
+                                        <img 
+                                            src="images/ethio-coders-certificate.jpg" 
+                                            alt="EthioCoders Training Certificate — Yohannes Abegaz"
+                                            class="cert-img"
+                                            loading="lazy"
+                                        >
+                                        <div class="cert-img-overlay">
+                                            <span>Click to enlarge</span>
+                                        </div>
+                                    </div>
+                                    <div class="cert-info">
+                                        <h3 class="cert-title">Android Developer Fundamentals</h3>
+                                        <span class="cert-issuer">
+                                            <i class='bx bx-buildings'></i>
+                                            Udacity Nanodegree · EthioCoders
+                                        </span>
+                                        <div class="cert-tags">
+                                            <span>Android</span>
+                                            <span>Kotlin</span>
+                                            <span>Java</span>
+                                            <span>Mobile Dev</span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="cert-card glass-card" id="cert-datascience">
+                                    <div class="cert-badge">
+                                        <i class='bx bxs-badge-check'></i>
+                                    </div>
+                                    <div class="cert-image-wrap">
+                                        <img 
+                                            src="images/data-science-certificate.jpg" 
+                                            alt="Data Science Certificate — Yohannes Abegaz"
+                                            class="cert-img"
+                                            loading="lazy"
+                                        >
+                                        <div class="cert-img-overlay">
+                                            <span>Click to enlarge</span>
+                                        </div>
+                                    </div>
+                                    <div class="cert-info">
+                                        <h3 class="cert-title">Data Science Fundamentals</h3>
+                                        <span class="cert-issuer">
+                                            <i class='bx bx-buildings'></i>
+                                            Udacity Nanodegree · Data Science Program
+                                        </span>
+                                        <div class="cert-tags">
+                                            <span>Python</span>
+                                            <span>Data Analysis</span>
+                                            <span>ML</span>
+                                            <span>Statistics</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -706,8 +775,23 @@
     <!-- ============ TOAST CONTAINER ============ -->
     <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
+    <!-- ============ CERTIFICATE LIGHTBOX ============ -->
+    <div class="cert-lightbox" id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer" aria-hidden="true">
+        <div class="cert-lightbox__backdrop" id="cert-lightbox-backdrop"></div>
+        <div class="cert-lightbox__inner">
+            <button class="cert-lightbox__close" id="cert-lightbox-close" aria-label="Close certificate viewer">
+                <i class='bx bx-x'></i>
+            </button>
+            <div class="cert-lightbox__img-wrap">
+                <img src="" alt="" id="cert-lightbox-img" class="cert-lightbox__img">
+            </div>
+            <div class="cert-lightbox__caption" id="cert-lightbox-caption"></div>
+        </div>
+    </div>
+
     <!-- ============ MOBILE SIDEBAR OVERLAY ============ -->
     <div class="mobile-sidebar-overlay" id="mobile-sidebar-overlay"></div>
+
 
     <!-- ============ AI CHATBOT WIDGET ============ -->
     <div id="chatbot-toggle" class="chatbot-toggle" role="button" tabindex="0" aria-label="Open chatbot">
