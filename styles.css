@@ -206,7 +206,9 @@
 html,
 body {
     max-width: 100%;
-    overflow: hidden;          /* must NOT be overflow-x:hidden — that creates a scroll container and silently kills position:sticky on all children */
+    /* allow body-level scrolling on mobile to avoid viewport/100vh issues */
+    overflow-x: hidden;   /* only hide horizontal scroll, allow vertical scroll on mobile */
+    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     width: 100%;
     height: 100%;
@@ -622,9 +624,15 @@ h4,
     display: flex;
     flex-direction: column;
     min-width: 0;
-    height: 100vh;             /* fill the viewport column — do NOT use min-height here or the panel won't clip */
-    overflow: hidden;          /* clip the topbar; scrolling is handled by .content-area below */
+    /* do not force overflow hidden — allow content-area to control scrolling */
+    height: 100vh;
     transition: margin-left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@supports (height: 100dvh) {
+    .main-panel {
+        height: 100dvh;
+    }
 }
 
 /* =========================================================================
@@ -746,10 +754,12 @@ h4,
 .content-area {
     flex: 1;
     min-width: 0;
-    overflow-y: auto;          /* THE sole scroll container — sidebar sticky tracks this */
+    min-height: 0;
+    overflow-y: auto;          /* THE sole scroll container */
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     padding: 1.5rem 2rem 3rem;
-    height: 100%;              /* fill .main-panel so overflow-y:auto actually activates */
+    height: auto;              /* let flex determine the height */
 }
 
 .route-panel {
@@ -3555,9 +3565,29 @@ h4,
    RESPONSIVE — MOBILE
    ========================================================================= */
 @media (max-width: 768px) {
+    .app-shell {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        position: relative;
+    }
+
     .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(300px, 82vw);
+        height: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
+        z-index: 1000;
         transform: translateX(-100%);
-        z-index: 200;
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
     }
 
     .sidebar.open {
@@ -3565,7 +3595,14 @@ h4,
     }
 
     .main-panel {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
         margin-left: 0;
+        height: 100vh;
+        height: 100dvh;
+        height: 100svh;
     }
 
     .mobile-menu-btn {
@@ -4388,19 +4425,29 @@ h4,
 /* ---- App Shell: collapse sidebar on mobile ---- */
 @media (max-width: 768px) {
     .app-shell {
-        grid-template-columns: 1fr;
+        display: block;
+        width: 100%;
+        min-height: 100vh;
         min-height: 100dvh;
     }
 
     /* Main panel takes full width and full height on mobile */
     .main-panel {
+        height: 100vh;
         height: 100dvh;
-        height: 100vh;  /* fallback for browsers without dvh */
+        height: 100svh;
         width: 100%;
+        min-width: 0;
+        margin-left: 0;
     }
 
     /* Content area scrolls fine on mobile */
     .content-area {
+        flex: 1 1 auto;
+        min-height: 0;
+        height: auto;
+        width: 100%;
+        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
