@@ -639,24 +639,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileOverlay = document.getElementById('mobile-sidebar-overlay');
+    let savedBodyOverflow = '';
 
     function openMobileSidebar() {
         if (sidebar) sidebar.classList.add('open');
         if (mobileOverlay) mobileOverlay.classList.add('open');
-        const ca = document.querySelector('.content-area');
-        if (ca) ca.style.overflow = 'hidden';
+        if (mobileMenuBtn) {
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        }
+        savedBodyOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
     }
+
     function closeMobileSidebar() {
         if (sidebar) sidebar.classList.remove('open');
         if (mobileOverlay) mobileOverlay.classList.remove('open');
-        const ca = document.querySelector('.content-area');
-        if (ca) ca.style.overflow = '';
-        document.body.style.overflow = '';
+        if (mobileMenuBtn) {
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+        document.body.style.overflow = savedBodyOverflow || '';
     }
 
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileSidebar);
     if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileSidebar);
+
+    // Escape closes mobile sidebar
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
+            closeMobileSidebar();
+        }
+    });
 
     // Sidebar link clicks close mobile
     document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -679,23 +691,24 @@ document.addEventListener('DOMContentLoaded', () => {
             p.setAttribute('aria-hidden', !isActive);
         });
 
-        // Fallback: if hash does not match any route panel, fallback to overview
+        // Safe Fallback: if hash does not match any route panel, fallback to overview ONLY
         if (!matched) {
-            const fallbackPanel = document.getElementById('panel-overview') || document.querySelector('.route-panel[data-route="overview"]');
-            if (fallbackPanel) {
-                fallbackPanel.classList.add('active');
-                fallbackPanel.setAttribute('aria-hidden', 'false');
-            }
+            panels.forEach(p => {
+                const isOverview = p.getAttribute('data-route') === 'overview';
+                p.classList.toggle('active', isOverview);
+                p.setAttribute('aria-hidden', !isOverview);
+            });
         }
 
+        const activeRoute = matched ? route : 'overview';
         links.forEach(l => {
             const linkRoute = l.getAttribute('data-route');
-            const isActive = linkRoute === (matched ? route : 'overview');
+            const isActive = linkRoute === activeRoute;
             l.classList.toggle('active', isActive);
             l.setAttribute('aria-current', isActive ? 'page' : 'false');
         });
 
-        // Close mobile sidebar
+        // Close mobile sidebar and restore scrolling
         closeMobileSidebar();
 
         // Scroll content to top
@@ -864,9 +877,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let cmdSelectedIndex = -1;
 
     const cmdItems = [
-        ...['overview', 'about', 'skills', 'projects', 'coming-soon', 'education', 'contact', 'resume'].map(r => ({
+        ...['overview', 'about', 'skills', 'projects', 'coming-soon', 'education', 'certificates', 'contact', 'resume'].map(r => ({
             type: 'Section', label: r.charAt(0).toUpperCase() + r.slice(1).replace('-', ' '), icon: 'bx-layout', action: () => { location.hash = `#/${r}`; }
         })),
+        {
+            type: 'Certificate',
+            label: 'Data Science Fundamentals (Udacity Nanodegree)',
+            icon: 'bx-award',
+            action: () => {
+                location.hash = '#/certificates';
+                setTimeout(() => {
+                    const btn = document.querySelector('#cert-datascience .cert-view-btn');
+                    if (btn) btn.click();
+                }, 200);
+            }
+        },
+        {
+            type: 'Certificate',
+            label: 'Android Developer Fundamentals (Udacity Nanodegree)',
+            icon: 'bx-award',
+            action: () => {
+                location.hash = '#/certificates';
+                setTimeout(() => {
+                    const btn = document.querySelector('#cert-ethiocoders .cert-view-btn');
+                    if (btn) btn.click();
+                }, 200);
+            }
+        },
         ...projectsData.map(p => ({
             type: 'Project', label: p.name, icon: 'bx-folder-open', action: () => { location.hash = '#/projects'; setTimeout(() => openProjectDrawer(p.id), 200); }
         })),
@@ -1185,15 +1222,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (e) {
         console.error('Portfolio init error:', e);
-        // Safe fallback: ensure overview panel and route panels are visible if an unhandled error occurred
-        const overviewPanel = document.getElementById('panel-overview') || document.querySelector('.route-panel[data-route="overview"]');
-        if (overviewPanel) {
-            overviewPanel.classList.add('active');
-            overviewPanel.removeAttribute('aria-hidden');
-            overviewPanel.style.display = 'block';
-        }
-        document.querySelectorAll('.route-panel').forEach(p => {
-            p.style.display = 'block';
+        // Safe fallback: safely display ONLY Overview panel without stacking route panels
+        const panels = document.querySelectorAll('.route-panel');
+        panels.forEach(p => {
+            const isOverview = p.getAttribute('data-route') === 'overview';
+            p.classList.toggle('active', isOverview);
+            p.setAttribute('aria-hidden', !isOverview);
+            p.style.display = isOverview ? 'block' : 'none';
         });
     }
 }); // End DOMContentLoaded
@@ -1253,7 +1288,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const explainMatch = q.match(/explain\s+(?:the\s+)?(.+?)(?:\s+(?:in\s+detail|project|for me|please))?$/i);
         if (explainMatch && explainMatch[1]) return explainProject(explainMatch[1].replace(/\s+project$/i, '').trim());
 
-        if (/^(hi|hello|hey|yo|sup|greetings)/i.test(q)) return "Hey! 👋 I'm Yohannes's portfolio AI. Ask about his **projects**, **skills**, **education**, or **contact** info!";
+        if (/^(hi|hello|hey|yo|sup|greetings)/i.test(q)) return "Hey! 👋 I'm Yohannes's portfolio AI. Ask about his **projects**, **skills**, **certifications**, **education**, or **contact** info!";
+        if (/cert|certificate|nanodegree|udacity|ethiocoders|ethio coders/i.test(q)) {
+            lastTopic = 'certificates';
+            return `📜 **Verified Certifications:**\n\n1. **Data Science Fundamentals** — Udacity Nanodegree (Aug 18, 2026)\n2. **Android Developer Fundamentals** — Udacity Nanodegree (Aug 18, 2026)\n\nIssued in collaboration with the **5 Million Ethiopian Coders Initiative**. Check the **Certifications** section (#/certificates) to view credentials or download original PDFs!`;
+        }
         if (/skill|tech|stack|language|framework|tool|database/i.test(q)) { lastTopic = 'skills'; return `🛠️ **Technical Arsenal:**\n\n**Languages:** ${portfolio.languages.join(', ')}\n**Frameworks:** ${portfolio.frameworks.join(', ')}\n**Databases:** ${portfolio.databases.join(', ')}\n**Tools:** ${portfolio.tools.join(', ')}\n\nStrongest combo: **React + Node.js + MongoDB**. Ask me to explain any project!`; }
 
         const projectKeys = Object.keys(portfolio.projects);
@@ -1348,51 +1387,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn   = document.getElementById('cert-lightbox-close');
     const img        = document.getElementById('cert-lightbox-img');
     const caption    = document.getElementById('cert-lightbox-caption');
+    const downloadBtn = document.getElementById('cert-lightbox-download');
+    let previousOverflow = '';
 
-    function openLightbox(src, alt, title) {
+    function openLightbox(src, alt, title, pdfUrl) {
+        if (!img) return;
         img.src = src;
-        img.alt = alt;
-        caption.textContent = title || alt;
+        img.alt = alt || title || 'Certificate image';
+        if (caption) caption.textContent = title || alt || '';
+        
+        if (downloadBtn) {
+            if (pdfUrl) {
+                downloadBtn.href = pdfUrl;
+                downloadBtn.download = pdfUrl.split('/').pop() || 'Certificate.pdf';
+                downloadBtn.style.display = 'inline-flex';
+            } else {
+                downloadBtn.style.display = 'none';
+            }
+        }
+
+        previousOverflow = document.body.style.overflow;
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        closeBtn.focus();
+        if (closeBtn) closeBtn.focus();
     }
 
     function closeLightbox() {
         lightbox.classList.remove('open');
         lightbox.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        img.src = '';
+        document.body.style.overflow = previousOverflow || '';
+        if (img) img.src = '';
     }
 
-    // Attach click events to all cert cards
-    document.querySelectorAll('.cert-card').forEach(card => {
-        const certImg = card.querySelector('.cert-img');
-        const certTitle = card.querySelector('.cert-title');
-        if (!certImg) return;
+    // Attach click events to all dedicated View Certificate buttons
+    document.querySelectorAll('.cert-view-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const src = btn.getAttribute('data-cert-src');
+            const title = btn.getAttribute('data-cert-title');
+            const pdf = btn.getAttribute('data-cert-pdf');
+            if (src) openLightbox(src, title, title, pdf);
+        });
+    });
 
-        card.addEventListener('click', () => {
-            openLightbox(
-                certImg.src,
-                certImg.alt,
-                certTitle ? certTitle.textContent : certImg.alt
-            );
+    // Attach click events to cert media containers
+    document.querySelectorAll('.cert-media-container').forEach(container => {
+        container.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const src = container.getAttribute('data-cert-src');
+            const title = container.getAttribute('data-cert-title');
+            const pdf = container.getAttribute('data-cert-pdf');
+            if (src) openLightbox(src, title, title, pdf);
         });
 
-        // Keyboard accessibility
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.addEventListener('keydown', e => {
+        container.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                card.click();
+                container.click();
             }
         });
     });
 
-    closeBtn.addEventListener('click', closeLightbox);
-    backdrop.addEventListener('click', closeLightbox);
+    // Backwards-compatibility for any .cert-card elements
+    document.querySelectorAll('.cert-card:not(.cert-showcase-card)').forEach(card => {
+        const certImg = card.querySelector('.cert-img');
+        const certTitle = card.querySelector('.cert-title');
+        if (!certImg) return;
+
+        card.addEventListener('click', (e) => {
+            // Do not open lightbox if user clicked a link or button
+            if (e.target.closest('a') || e.target.closest('button')) return;
+            openLightbox(
+                certImg.src,
+                certImg.alt,
+                certTitle ? certTitle.textContent : certImg.alt,
+                null
+            );
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
 
     // Close on Escape
     document.addEventListener('keydown', e => {

@@ -108,6 +108,10 @@
                     <div class="sidebar-icon-wrap"><i class='bx bx-book-open'></i></div>
                     <span>Education</span>
                 </a>
+                <a href="#/certificates" class="sidebar-link" data-route="certificates">
+                    <div class="sidebar-icon-wrap"><i class='bx bx-certification'></i></div>
+                    <span>Certifications</span>
+                </a>
                 <a href="#/contact" class="sidebar-link" data-route="contact">
                     <div class="sidebar-icon-wrap"><i class='bx bx-envelope'></i></div>
                     <span>Contact</span>
@@ -553,73 +557,194 @@
                             </div>
                         </div>
                     
-                        <!-- Certifications Section -->
+                        <!-- Certifications Preview inside Education -->
                         <div class="certifications-section">
                             <div class="section-headline">
                                 <span class="section-kicker">Verified Credentials</span>
-                                <h2>Certifications <span class="text-gradient">&amp; Training</span></h2>
+                                <h2>Professional <span class="text-gradient">Certifications</span></h2>
+                                <p class="section-subhead">Nanodegrees and verified certifications validating core software competencies.</p>
                             </div>
-                            <div class="cert-grid">
-                                <article class="cert-card glass-card" id="cert-ethiocoders">
-                                    <div class="cert-badge">
-                                        <i class='bx bxs-badge-check'></i>
-                                    </div>
-                                    <div class="cert-image-wrap">
-                                        <img 
-                                            src="images/ethio-coders-certificate.jpg" 
-                                            alt="EthioCoders Training Certificate — Yohannes Abegaz"
-                                            class="cert-img"
-                                            loading="lazy"
-                                        >
-                                        <div class="cert-img-overlay">
-                                            <span>Click to enlarge</span>
-                                        </div>
-                                    </div>
-                                    <div class="cert-info">
-                                        <h3 class="cert-title">Android Developer Fundamentals</h3>
-                                        <span class="cert-issuer">
-                                            <i class='bx bx-buildings'></i>
-                                            Udacity Nanodegree · EthioCoders
-                                        </span>
-                                        <div class="cert-tags">
-                                            <span>Android</span>
-                                            <span>Kotlin</span>
-                                            <span>Java</span>
-                                            <span>Mobile Dev</span>
-                                        </div>
-                                    </div>
-                                </article>
+                            <div class="cert-education-callout glass-card">
+                                <div class="cert-edu-callout-icon"><i class='bx bxs-certification'></i></div>
+                                <div class="cert-edu-callout-info">
+                                    <h3>2 Verified Nanodegrees from Udacity &amp; Ethiopian Coders</h3>
+                                    <p>Completed verified programs in <strong>Data Science Fundamentals</strong> and <strong>Android Developer Fundamentals</strong>.</p>
+                                </div>
+                                <a href="#/certificates" class="btn btn-primary"><i class='bx bx-award'></i> View Full Certificates Showcase &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                                <article class="cert-card glass-card" id="cert-datascience">
-                                    <div class="cert-badge">
-                                        <i class='bx bxs-badge-check'></i>
+                <!-- ======== CERTIFICATIONS PANEL ======== -->
+                <section class="route-panel" data-route="certificates" id="panel-certificates" aria-hidden="true">
+                    <div class="panel-inner portfolio-shell">
+                        <header class="section-header">
+                            <span class="section-kicker"><i class='bx bxs-badge-check'></i> Verified Credentials</span>
+                            <h2 class="panel-title">Professional <span class="text-gradient">Certifications</span></h2>
+                            <p class="section-subhead">Professional certifications and technical learning that strengthen my practical development skills.</p>
+                        </header>
+
+                        <div class="cert-showcase-grid">
+                            <!-- Certificate 1: Data Science Fundamentals -->
+                            <article class="cert-showcase-card glass-card" id="cert-datascience">
+                                <div class="cert-card-header">
+                                    <div class="cert-badge-pill">
+                                        <i class='bx bxs-check-shield'></i> Verified Nanodegree
                                     </div>
-                                    <div class="cert-image-wrap">
+                                    <span class="cert-issue-date"><i class='bx bx-calendar'></i> Aug 18, 2026</span>
+                                </div>
+
+                                <div class="cert-media-container" role="button" tabindex="0" aria-label="Enlarge Data Science Fundamentals Certificate" data-cert-src="images/data-science-certificate.webp" data-cert-title="Data Science Fundamentals — Udacity Nanodegree" data-cert-pdf="certificates/data-science-certificate.pdf">
+                                    <picture>
+                                        <source srcset="images/data-science-certificate.webp" type="image/webp">
                                         <img 
                                             src="images/data-science-certificate.jpg" 
-                                            alt="Data Science Certificate — Yohannes Abegaz"
-                                            class="cert-img"
+                                            alt="Data Science Fundamentals Nanodegree Certificate awarded to Yohannes Abegaz by Udacity"
+                                            class="cert-showcase-img"
                                             loading="lazy"
+                                            width="1584"
+                                            height="1224"
                                         >
-                                        <div class="cert-img-overlay">
-                                            <span>Click to enlarge</span>
+                                    </picture>
+                                    <div class="cert-media-hover">
+                                        <span class="cert-media-btn"><i class='bx bx-zoom-in'></i> Click to Enlarge</span>
+                                    </div>
+                                </div>
+
+                                <div class="cert-card-content">
+                                    <div class="cert-title-group">
+                                        <span class="cert-program-subtitle">Nanodegree Program Completion</span>
+                                        <h3 class="cert-showcase-title">Data Science Fundamentals</h3>
+                                    </div>
+
+                                    <div class="cert-organization-info">
+                                        <div class="cert-org-icon"><i class='bx bx-award'></i></div>
+                                        <div class="cert-org-text">
+                                            <span class="cert-org-name"><strong>Udacity</strong> (Part of Accenture)</span>
+                                            <span class="cert-org-initiative">In collaboration with 5 Million Ethiopian Coders Initiative</span>
                                         </div>
                                     </div>
-                                    <div class="cert-info">
-                                        <h3 class="cert-title">Data Science Fundamentals</h3>
-                                        <span class="cert-issuer">
-                                            <i class='bx bx-buildings'></i>
-                                            Udacity Nanodegree · Data Science Program
-                                        </span>
-                                        <div class="cert-tags">
-                                            <span>Python</span>
-                                            <span>Data Analysis</span>
-                                            <span>ML</span>
-                                            <span>Statistics</span>
+
+                                    <p class="cert-description">
+                                        Verified Nanodegree curriculum focused on practical data manipulation, statistical analysis, Python data science libraries, and machine learning principles.
+                                    </p>
+
+                                    <div class="cert-tech-chips">
+                                        <span class="tech-chip"><i class='bx bxl-python'></i> Python</span>
+                                        <span class="tech-chip">Data Analysis</span>
+                                        <span class="tech-chip">Statistics</span>
+                                        <span class="tech-chip">Machine Learning</span>
+                                    </div>
+
+                                    <div class="cert-meta-details">
+                                        <div class="cert-meta-row">
+                                            <span class="cert-meta-key">Awarded to:</span>
+                                            <span class="cert-meta-val"><strong>Yohannes Abegaz</strong></span>
+                                        </div>
+                                        <div class="cert-meta-row">
+                                            <span class="cert-meta-key">Signatory:</span>
+                                            <span class="cert-meta-val">Kai Roemmelt, CEO, Udacity</span>
+                                        </div>
+                                        <div class="cert-meta-row cert-meta-row--id">
+                                            <span class="cert-meta-key">Credential ID:</span>
+                                            <code class="cert-credential-id">30cc521c-9ae3-11f1-8be4-b7598ba759e4</code>
                                         </div>
                                     </div>
-                                </article>
-                            </div>
+
+                                    <div class="cert-button-group">
+                                        <button type="button" class="btn btn-primary cert-view-btn" data-cert-src="images/data-science-certificate.webp" data-cert-title="Data Science Fundamentals — Udacity Nanodegree" data-cert-pdf="certificates/data-science-certificate.pdf" aria-label="View Data Science certificate in lightbox">
+                                            <i class='bx bx-show'></i> View Certificate
+                                        </button>
+                                        <a href="certificates/data-science-certificate.pdf" download="Yohannes_Abegaz_Data_Science_Certificate.pdf" class="btn btn-secondary cert-download-btn" aria-label="Download Data Science certificate original PDF">
+                                            <i class='bx bx-download'></i> Download PDF
+                                        </a>
+                                        <a href="https://www.udacity.com/certificate/e/30cc521c-9ae3-11f1-8be4-b7598ba759e4" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cert-verify-link" aria-label="Verify Data Science certificate at Udacity">
+                                            <i class='bx bx-check-shield'></i> Verify
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Certificate 2: Android Developer Fundamentals -->
+                            <article class="cert-showcase-card glass-card" id="cert-ethiocoders">
+                                <div class="cert-card-header">
+                                    <div class="cert-badge-pill">
+                                        <i class='bx bxs-check-shield'></i> Verified Nanodegree
+                                    </div>
+                                    <span class="cert-issue-date"><i class='bx bx-calendar'></i> Aug 18, 2026</span>
+                                </div>
+
+                                <div class="cert-media-container" role="button" tabindex="0" aria-label="Enlarge Android Developer Fundamentals Certificate" data-cert-src="images/ethio-coders-certificate.webp" data-cert-title="Android Developer Fundamentals — Udacity Nanodegree" data-cert-pdf="certificates/ethio-coders-certificate.pdf">
+                                    <picture>
+                                        <source srcset="images/ethio-coders-certificate.webp" type="image/webp">
+                                        <img 
+                                            src="images/ethio-coders-certificate.jpg" 
+                                            alt="Android Developer Fundamentals Nanodegree Certificate awarded to Yohannes Abegaz by Udacity"
+                                            class="cert-showcase-img"
+                                            loading="lazy"
+                                            width="1584"
+                                            height="1224"
+                                        >
+                                    </picture>
+                                    <div class="cert-media-hover">
+                                        <span class="cert-media-btn"><i class='bx bx-zoom-in'></i> Click to Enlarge</span>
+                                    </div>
+                                </div>
+
+                                <div class="cert-card-content">
+                                    <div class="cert-title-group">
+                                        <span class="cert-program-subtitle">Nanodegree Program Completion</span>
+                                        <h3 class="cert-showcase-title">Android Developer Fundamentals</h3>
+                                    </div>
+
+                                    <div class="cert-organization-info">
+                                        <div class="cert-org-icon"><i class='bx bx-mobile-alt'></i></div>
+                                        <div class="cert-org-text">
+                                            <span class="cert-org-name"><strong>Udacity</strong> (Part of Accenture)</span>
+                                            <span class="cert-org-initiative">In collaboration with 5 Million Ethiopian Coders Initiative</span>
+                                        </div>
+                                    </div>
+
+                                    <p class="cert-description">
+                                        Hands-on mobile development engineering covering Android architecture, responsive layout structures, Kotlin/Java workflows, lifecycle management, and clean code principles.
+                                    </p>
+
+                                    <div class="cert-tech-chips">
+                                        <span class="tech-chip"><i class='bx bxl-android'></i> Android SDK</span>
+                                        <span class="tech-chip">Kotlin</span>
+                                        <span class="tech-chip">Java</span>
+                                        <span class="tech-chip">Mobile Architecture</span>
+                                    </div>
+
+                                    <div class="cert-meta-details">
+                                        <div class="cert-meta-row">
+                                            <span class="cert-meta-key">Awarded to:</span>
+                                            <span class="cert-meta-val"><strong>Yohannes Abegaz</strong></span>
+                                        </div>
+                                        <div class="cert-meta-row">
+                                            <span class="cert-meta-key">Signatory:</span>
+                                            <span class="cert-meta-val">Kai Roemmelt, CEO, Udacity</span>
+                                        </div>
+                                        <div class="cert-meta-row cert-meta-row--id">
+                                            <span class="cert-meta-key">Credential ID:</span>
+                                            <code class="cert-credential-id">80b28486-9ade-11f1-bd3c-f70f24d6e745</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="cert-button-group">
+                                        <button type="button" class="btn btn-primary cert-view-btn" data-cert-src="images/ethio-coders-certificate.webp" data-cert-title="Android Developer Fundamentals — Udacity Nanodegree" data-cert-pdf="certificates/ethio-coders-certificate.pdf" aria-label="View Android Developer certificate in lightbox">
+                                            <i class='bx bx-show'></i> View Certificate
+                                        </button>
+                                        <a href="certificates/ethio-coders-certificate.pdf" download="Yohannes_Abegaz_Android_Developer_Certificate.pdf" class="btn btn-secondary cert-download-btn" aria-label="Download Android Developer certificate original PDF">
+                                            <i class='bx bx-download'></i> Download PDF
+                                        </a>
+                                        <a href="https://www.udacity.com/certificate/e/80b28486-9ade-11f1-bd3c-f70f24d6e745" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cert-verify-link" aria-label="Verify Android Developer certificate at Udacity">
+                                            <i class='bx bx-check-shield'></i> Verify
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
                     </div>
                 </section>
@@ -785,7 +910,14 @@
             <div class="cert-lightbox__img-wrap">
                 <img src="" alt="" id="cert-lightbox-img" class="cert-lightbox__img">
             </div>
-            <div class="cert-lightbox__caption" id="cert-lightbox-caption"></div>
+            <div class="cert-lightbox__bar">
+                <div class="cert-lightbox__caption" id="cert-lightbox-caption"></div>
+                <div class="cert-lightbox__actions">
+                    <a href="#" id="cert-lightbox-download" class="btn btn-secondary btn-sm" download aria-label="Download original certificate PDF">
+                        <i class='bx bx-download'></i> <span>Download Original PDF</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
